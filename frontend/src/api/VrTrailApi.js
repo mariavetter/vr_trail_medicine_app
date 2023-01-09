@@ -44,7 +44,7 @@ export default class VrTrailApi {
       }
       )
 
-    #postUnityURL = () => `${this.#vrTrailApiBaseURL}`;
+    #postUnityURL = () => `${this.#unityBaseURL}`;
 
     #getUserURL = () => `${this.#vrTrailApiBaseURL}/user`;
     #getUserByIdURL = (id) => `${this.#vrTrailApiBaseURL}/user-by-id/${id}`;
