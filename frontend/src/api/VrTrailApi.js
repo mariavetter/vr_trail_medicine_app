@@ -67,7 +67,7 @@ export default class VrTrailApi {
           'Content-type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         },
-        body: newRun.id
+        body: String(newRun.id)
       })
     }
 
