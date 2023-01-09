@@ -59,6 +59,7 @@ export default class VrTrailApi {
     #getTask3ByIdURL = (id) => `${this.#vrTrailApiBaseURL}/task3-by-id/${id}`;
 
     sendRunToUnity(newRun) {
+      console.log("Test API", newRun.id)
       return this.#fetchUnity(this.#postUnityURL(), {
         method: 'POST',
         headers: {
@@ -66,7 +67,7 @@ export default class VrTrailApi {
           'Content-type': 'application/json',
           'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify(newRun)
+        body: newRun.id
       })
     }
 
