@@ -21,7 +21,8 @@ class Home extends React.Component {
 			show: false,
 			showRunList: false,
 			user: this.props.currentUser,
-      newRunBuff: null
+      newRunBId: null,
+      newRunUser: null
 		};
 	}
 
@@ -42,12 +43,8 @@ postRun = () => {
   newRun.setUserId(this.props.currentUser.id)
   VrTrailApi.getAPI().postRun(newRun)
   .then(runBO =>
-    // Backend call sucessfull
-    // reinit the dialogs state for a new empty customer
-    VrTrailApi.getAPI().sendRunToUnity(runBO))
-    .then(() => {
-      console.log("we are here")
-    }).catch(e =>
+    VrTrailApi.getAPI().sendRunToUnity(runBO)
+    ).catch(e =>
     this.setState({
       updatingInProgress: false,    // disable loading indicator
       updatingError: e              // show error message

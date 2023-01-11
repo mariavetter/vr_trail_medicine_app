@@ -32,7 +32,7 @@ user = api.model('User', {
 run = api.model('Run', {
     'id': fields.Integer(attribute='_id', description='ID'),
     'date': fields.String(attribute='_date', description='Date'),
-    'user_iduser': fields.Integer(attribute='_user_iduser', description='Iduser'),
+    'user_iduser': fields.Integer(attribute='_iduser', description='Iduser'),
 })
 
 task1 = api.model('Task1', {
@@ -112,8 +112,9 @@ class RunOps(Resource):
         run = Run.from_dict(api.payload)
 
         if run is not None:
-            controller.post_run(run)
-            return 200
+            newRun = controller.post_run(run)
+            print("buff", newRun)
+            return newRun, 200
         else: 
             return '', 500
 

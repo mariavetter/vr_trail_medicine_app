@@ -119,6 +119,11 @@ export default class VrTrailApi {
           'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(run)
+      }).then((responseJSON) => {
+        let runBack = Run.fromJSON(responseJSON);
+        return new Promise(function (resolve) {
+          resolve(runBack);
+        })
       })
     }
     
