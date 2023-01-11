@@ -44,12 +44,9 @@ postRun = () => {
   .then(runBO =>
     // Backend call sucessfull
     // reinit the dialogs state for a new empty customer
-    this.setState({
-      newRunBuff: runBO
-    })).then(() => {
+    VrTrailApi.getAPI().sendRunToUnity(runBO))
+    .then(() => {
       console.log("we are here")
-      VrTrailApi.getAPI().sendRunToUnity(newRun)
-      .then(console.log("worked"))
     }).catch(e =>
     this.setState({
       updatingInProgress: false,    // disable loading indicator
