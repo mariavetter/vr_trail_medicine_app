@@ -16,6 +16,10 @@ class RunList extends Component {
         };
     }
 
+    componentDidUpdate() {
+        console.log("nothing")
+    }
+
     render() {
         console.log("this.props.runs", this.props.runs)
         console.log("this.state.runsBuff", this.state.runsBuff)

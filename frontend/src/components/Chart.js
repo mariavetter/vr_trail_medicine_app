@@ -36,12 +36,6 @@ class Chart extends Component {
         };
     }
 
-    componentDidMount() {
-      this.setState({
-
-      })
-    }
-
     render(){
           return (
             <LineChart width={500} height={300} data={this.state.data}>

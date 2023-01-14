@@ -14,6 +14,7 @@ class RunListEntry extends Component {
             run: props.run,
             runID: props.run.getID(),
             runDate: props.run.getDate(),
+            test: props.task1,
 
             task1: null,
             task1Duration: null,
@@ -31,26 +32,6 @@ class RunListEntry extends Component {
             error: null
         };
     }
-
-    getRunByIdUser = () => {
-        VrTrailApi.getAPI().getRunByIdUser(this.state.run.iduser)
-        .then(runBO =>
-            this.setState({
-                run: runBO,
-                error: null,
-                loadingInProgress: false,
-            })).catch(e =>
-                this.setState({
-                    run: null,
-                    error: e,
-                    loadingInProgress: false,
-                }));
-        this.setState({
-            error: null,
-            loadingInProgress: true,
-            loadingKonversationenError: null
-        });
-      }
 
       getTask1ById = () => {
         VrTrailApi.getAPI().getTask1ById(this.state.runID)
@@ -119,11 +100,10 @@ class RunListEntry extends Component {
       }
 
     componentDidMount() {
-      // load Profil
-      this.getRunByIdUser();
-      this.getTask1ById();
-      this.getTask2ById();
-      this.getTask3ById();
+        // load Profil
+        this.getTask1ById();
+        this.getTask2ById();
+        this.getTask3ById();
     }
 
     render(){
@@ -133,7 +113,11 @@ class RunListEntry extends Component {
                 <Accordion.Body>
                       Datum: {runDate}
                       <br/><br/><br/>
-                      <Chart task1Duration={task1Duration} task2Duration={task2Duration} task3Duration={task3Duration}></Chart>
+                      {
+                            task1Duration != null && task2Duration != null && task3Duration != null?
+                            <Chart task1Duration={task1Duration} task2Duration={task2Duration} task3Duration={task3Duration}></Chart>
+                            : <Spinner color1="orange" color2="#fff" textColor="rgba(0,0,0, 0.5)" id="spinner"/>
+                      }
                       <br/><br/><br/>
                       <Card>
                         <Card.Body>
